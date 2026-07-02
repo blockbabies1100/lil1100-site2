@@ -23,3 +23,7 @@ export default function Home() {
     </>
   );
 }
+import Newsletter from "@/components/Newsletter";
+import Socials from "@/components/Socials";<Newsletter />
+<Socials />
+<Footer />
