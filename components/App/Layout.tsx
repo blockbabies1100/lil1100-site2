@@ -13,3 +13,10 @@ export const metadata = {
     "DawgShit",
     "MADE MEN",
     "Life We Live
+import PageTransition from "@/components/PageTransition";
+
+<body>
+  <PageTransition>
+    {children}
+  </PageTransition>
+</body>
