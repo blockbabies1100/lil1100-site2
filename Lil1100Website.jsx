@@ -1,132 +1,428 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Mail } from "lucide-react"
-import { motion } from "framer-motion"
+{
+  "name": "lil1100-official",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "framer-motion": "^11.3.0",
+    "lucide-react": "^0.462.0",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.3.0",
+    "react-player": "^2.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.0.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.6.3"
+  }
+}import "./globals.css";
 
-export default function Lil1100Website() {
+export const metadata = {
+  title: "Lil 1100 Official",
+  description:
+    "Official website for independent recording artist Lil 1100."
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <div className="min-h-screen bg-black text-white font-sans">
-      {/* Header */}
-      <header className="p-6 flex justify-between items-center border-b border-gray-800">
-        <h1 className="text-3xl font-bold">Lil 1100</h1>
-        <a href="mailto:big1100z@icloud.com">
-          <Button className="bg-red-600 hover:bg-red-700 text-white rounded-xl px-4 py-2 flex items-center">
-            <Mail className="mr-2 h-5 w-5" /> Contact
-          </Button>
-        </a>
-      </header>
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import LatestRelease from "@/components/LatestRelease";
+import Playlist from "@/components/Playlist";
+import Footer from "@/components/Footer";
 
-      {/* Hero Section */}
-      <section className="relative text-center p-12 bg-gradient-to-b from-red-900 to-black">
-        <motion.img
-          src="/uploads/IMG_0625.png"
-          alt="Life We Live Cover"
-          className="mx-auto rounded-2xl shadow-lg max-h-[500px] object-cover"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
+export default function Home() {
+  return (
+    <>
+      <Navbar />
+      <Hero />
+      <LatestRelease />
+      <Playlist />
+      <Footer />
+    </>
+  );
+}@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #000;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.red-gradient {
+  background: linear-gradient(90deg,#7a0000,#000);
+}
+
+.glow {
+  box-shadow: 0 0 25px red;
+}
+
+.new-badge {
+  background:#b30000;
+  padding:4px 10px;
+  border-radius:999px;
+  color:white;
+  font-size:.7rem;
+  box-shadow:0 0 15px red;
+}export default function Navbar() {
+  return (
+    <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-red-700 z-50">
+      <div className="max-w-7xl mx-auto flex justify-between items-center p-5">
+        <h1 className="text-3xl font-bold text-red-600">
+          LIL 1100
+        </h1>
+
+        <div className="flex gap-8 text-white">
+          <a href="#home">Home</a>
+          <a href="#music">Music</a>
+          <a href="#videos">Videos</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+  );
+}import { motion } from "framer-motion";
+
+export default function Hero() {
+  return (
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center bg-black pt-24"
+    >
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center px-8">
+
+        <motion.div
+          initial={{opacity:0,x:-50}}
+          animate={{opacity:1,x:0}}
+          transition={{duration:1}}
+        >
+          <h1 className="text-6xl font-black">
+            LIL <span className="text-red-600">1100</span>
+          </h1>
+
+          <h2 className="text-2xl text-gray-300 mt-4">
+            The Voice of the Streets
+          </h2>
+
+          <p className="mt-6 text-gray-400 leading-8">
+            Raw storytelling. Real emotion. Authentic street music.
+            Experience the official home of Lil 1100.
+          </p>
+
+          <div className="flex gap-5 mt-10">
+            <a
+              href="#latest"
+              className="bg-red-700 px-8 py-4 rounded-xl hover:bg-red-600 transition"
+            >
+              Watch Latest Release
+            </a>
+
+            <a
+              href="#music"
+              className="border border-red-700 px-8 py-4 rounded-xl"
+            >
+              Listen Now
+            </a>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{opacity:0,x:50}}
+          animate={{opacity:1,x:0}}
+          transition={{duration:1}}
+        >
+          <img
+            src="/images/life-we-live.jpg"
+            className="rounded-3xl shadow-2xl"
+            alt="Lil 1100"
+          />
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}export default function LatestRelease() {
+  return (
+    <section
+      id="latest"
+      className="py-24 red-gradient text-center"
+    >
+
+      <h2 className="text-5xl font-bold mb-6">
+        🔥 NEW RELEASE
+      </h2>
+
+      <h3 className="text-3xl mb-10">
+        MADE MEN
+      </h3>
+
+      <div className="max-w-5xl mx-auto">
+
+        <iframe
+          className="w-full aspect-video rounded-3xl"
+          src="https://www.youtube.com/embed/HDReZI3xQtc"
+          title="MADE MEN"
+          allowFullScreen
         />
-        <h2 className="text-4xl mt-6 font-bold">The Voice of the Streets</h2>
-        <p className="mt-2 text-gray-300 max-w-xl mx-auto">
-          Raw, real, and unfiltered — Lil 1100 brings his story to life through music.
+
+      </div>
+
+      <p className="mt-8 text-xl">
+        Watch the Official Video for Lil 1100 – MADE MEN
+      </p>
+
+    </section>
+  );
+}"use client";
+
+import { useState } from "react";
+
+const songs = [
+  {
+    title: "MADE MEN",
+    id: "HDReZI3xQtc",
+    badge: "NEW",
+    desc: "Latest release built on loyalty and ambition."
+  },
+  {
+    title: "DawgShit",
+    id: "xhrTtYMgNaI",
+    desc: "Hard street anthem with raw storytelling."
+  },
+  {
+    title: "Life We Live",
+    id: "xnoV5Iu8gAk",
+    desc: "Reflection on pain, loyalty and survival."
+  },
+  {
+    title: "Thinking Bout The Guys",
+    id: "sCQgzyFFhkg",
+    desc: "Tribute to fallen friends."
+  },
+  {
+    title: "RRR",
+    id: "_qJFVHfGkfw",
+    desc: "Raw. Real. Relentless."
+  },
+  {
+    title: "🔥 1 N 1",
+    id: "taVdfpk5cS8",
+    desc: "Street anthem with relentless energy."
+  }
+];
+
+export default function Playlist() {
+
+  const [current,setCurrent]=useState(songs[0]);
+
+  return(
+
+<section
+id="music"
+className="py-24 bg-black">
+
+<div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
+
+<div>
+
+<iframe
+className="w-full aspect-video rounded-3xl"
+src={`https://www.youtube.com/embed/${current.id}`}
+allowFullScreen
+/>
+
+</div>
+
+<div>
+
+<h2 className="text-4xl mb-8 font-bold">
+Playlist
+</h2>
+
+{songs.map(song=>(
+
+<div
+key={song.id}
+onClick={()=>setCurrent(song)}
+className="cursor-pointer border-b border-gray-800 py-6 hover:text-red-500 transition">
+
+<h3 className="text-2xl font-bold">
+
+{song.title}
+
+{song.badge && (
+<span className="new-badge ml-3">
+NEW
+</span>
+)}
+
+</h3>
+
+<p className="text-gray-400">
+{song.desc}
+</p>
+
+</div>
+
+))}
+
+</div>
+
+</div>
+
+</section>
+
+)
+}export default function Footer(){
+
+return(
+
+<footer
+id="contact"
+className="bg-zinc-950 py-20">
+
+<div className="max-w-6xl mx-auto text-center">
+
+<h2 className="text-4xl font-bold mb-5">
+Business Inquiries
+</h2>
+
+<p className="text-xl text-gray-400">
+Bookings • Features • Performances • Interviews
+</p>
+
+<a
+href="mailto:big1100z@icloud.com"
+className="inline-block mt-8 bg-red-700 px-8 py-4 rounded-xl">
+
+big1100z@icloud.com
+
+</a>
+
+<p className="mt-14 text-gray-600">
+© 2026 Lil 1100 Official
+</p>
+
+</div>
+
+</footer>
+
+)
+}"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+
+const images = [
+  {
+    src: "/images/life-we-live.jpg",
+    title: "Life We Live",
+  },
+  {
+    src: "/images/dawgshit.jpg",
+    title: "DawgShit",
+  },
+  {
+    src: "/images/artist-1.jpg",
+    title: "Lil 1100",
+  },
+  {
+    src: "/images/artist-2.jpg",
+    title: "Studio Session",
+  },
+];
+
+export default function Gallery() {
+  return (
+    <section
+      id="gallery"
+      className="bg-black py-24 px-6"
+    >
+      <div className="max-w-7xl mx-auto">
+
+        <motion.h2
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: .7 }}
+          className="text-5xl font-black text-center text-red-600 mb-6"
+        >
+          PHOTO GALLERY
+        </motion.h2>
+
+        <p className="text-center text-gray-400 mb-16 max-w-3xl mx-auto">
+          Behind every song is a story. Explore exclusive artwork,
+          promotional images, and moments from Lil 1100's journey.
         </p>
-      </section>
 
-      {/* Bio Section */}
-      <section className="p-10 max-w-4xl mx-auto">
-        <h3 className="text-2xl font-bold mb-4">About Lil 1100</h3>
-        <p className="text-gray-300 leading-relaxed">
-          Lil 1100 is an up-and-coming rap artist whose music reflects the grind, the struggle, and the triumph of life in his city. With a style that blends raw storytelling and hard-hitting beats, he’s carving out a unique lane in hip hop. His authenticity and dedication to his craft resonate with fans, making him one of the rising voices to watch.
-        </p>
-      </section>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-      {/* Article / Press */}
-      <section className="p-10 max-w-4xl mx-auto">
-        <h3 className="text-2xl font-bold mb-4">In the Spotlight</h3>
-        <Card className="bg-gray-900 text-white border-gray-800">
-          <CardContent className="p-6">
-            <h4 className="text-xl font-semibold mb-2">Lil 1100: Breaking Barriers with Every Verse</h4>
-            <p className="text-gray-300 mb-4">
-              With his unapologetic lyrics and bold delivery, Lil 1100’s music is more than entertainment—it’s a reflection of real-life experiences. Tracks like <i>"DawgShit"</i> and <i>"Life We Live"</i> showcase his ability to paint vivid pictures through sound. The energy in his performances proves he’s not just rapping, he’s telling his story.
-            </p>
-          </CardContent>
-        </Card>
-      </section>
+          {images.map((image, index) => (
 
-      {/* Music Playlist */}
-      <section className="p-10 max-w-4xl mx-auto text-center">
-        <h3 className="text-2xl font-bold mb-6">Music Playlist</h3>
-        <div className="space-y-6">
-          {[
-            { title: "DawgShit", url: "https://www.youtube.com/embed/xhrTtYMgNaI", desc: "Street anthem with raw energy and storytelling." },
-            { title: "Life We Live", url: "https://www.youtube.com/embed/xnoV5Iu8gAk", desc: "A real reflection on everyday struggles and survival." },
-            { title: "Thinking Bout the Guys", url: "https://www.youtube.com/embed/sCQgzyFFhkg", desc: "Emotional dedication to fallen brothers and loyalty." },
-            { title: "RRR", url: "https://www.youtube.com/embed/_qJFVHfGkfw", desc: "Hard-hitting track representing resilience, respect, and reality." },
-            { title: "MADE MEN", url: "https://www.youtube.com/embed/HDReZI3xQtc", desc: "Latest release — powerful message about loyalty and legacy.", latest: true },
-            { title: "1 N 1", url: "https://www.youtube.com/embed/taVdfpk5cS8", desc: "🔥 A raw and energetic anthem that showcases Lil 1100’s unstoppable grind." },
-          ].map((track, index) => (
-            <div key={index} className="bg-gray-900 rounded-2xl shadow-lg p-6 text-left">
-              <div className="flex items-center justify-between mb-3">
-                <h4 className="text-xl font-semibold flex items-center">
-                  {track.title}
-                  {track.title === "1 N 1" && <span className="ml-2 text-red-500 animate-pulse">🔥</span>}
-                  {track.latest && (
-                    <span className="ml-2 px-2 py-1 text-xs bg-red-600 text-white rounded-lg shadow-lg animate-pulse">
-                      NEW
-                    </span>
-                  )}
-                </h4>
+            <motion.div
+              key={index}
+              whileHover={{
+                scale: 1.05,
+                rotate: 1
+              }}
+              transition={{
+                duration: .3
+              }}
+              className="overflow-hidden rounded-3xl bg-zinc-900 shadow-2xl border border-zinc-800"
+            >
+
+              <div className="relative h-96">
+
+                <Image
+                  src={image.src}
+                  alt={image.title}
+                  fill
+                  className="object-cover"
+                />
+
               </div>
-              <iframe
-                className="w-full h-64 rounded-xl"
-                src={track.url}
-                title={track.title}
-                allowFullScreen
-              ></iframe>
-              <p className="mt-3 text-gray-400">{track.desc}</p>
-            </div>
+
+              <div className="p-5">
+
+                <h3 className="text-xl font-bold text-white">
+                  {image.title}
+                </h3>
+
+              </div>
+
+            </motion.div>
+
           ))}
-        </div>
-      </section>
 
-      {/* Media Section */}
-      <section className="p-10 max-w-5xl mx-auto">
-        <h3 className="text-2xl font-bold mb-4">Music & Art</h3>
-        <div className="grid md:grid-cols-2 gap-6">
-          <motion.img
-            src="/uploads/IMG_0862.jpeg"
-            alt="DawgShit Cover"
-            className="rounded-xl shadow-lg"
-            whileHover={{ scale: 1.05 }}
-          />
-          <motion.img
-            src="/uploads/IMG_0625.png"
-            alt="Life We Live Cover"
-            className="rounded-xl shadow-lg"
-            whileHover={{ scale: 1.05 }}
-          />
-          <motion.img
-            src="/uploads/IMG_0003.jpeg"
-            alt="Lil 1100 Photo"
-            className="rounded-xl shadow-lg"
-            whileHover={{ scale: 1.05 }}
-          />
-          <motion.img
-            src="/uploads/IMG_0858.png"
-            alt="Lil 1100 Artwork"
-            className="rounded-xl shadow-lg"
-            whileHover={{ scale: 1.05 }}
-          />
         </div>
-      </section>
 
-      {/* Contact Section */}
-      <footer className="p-6 border-t border-gray-800 text-center">
-        <p className="text-gray-400">For business inquiries contact:</p>
-        <a href="mailto:big1100z@icloud.com" className="text-red-500 font-semibold">
-          big1100z@icloud.com
-        </a>
-      </footer>
-    </div>
-  )
+      </div>
+    </section>
+  );
 }
