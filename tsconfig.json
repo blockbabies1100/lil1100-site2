@@ -30,7 +30,3 @@
   ],
   "exclude": ["node_modules"]
 }
-33| "tailwindcss": "^3.4.15",
-34| "postcss": "^8.4.49",
-35| "autoprefixer": "^10.4.20",
-36| "typescript": "^5.6.3"
