@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 const images = [
   {
@@ -60,13 +59,12 @@ export default function Gallery() {
               className="overflow-hidden rounded-3xl bg-zinc-900 shadow-2xl border border-zinc-800"
             >
 
-              <div className="relative h-96">
+              <div className="relative h-96 overflow-hidden">
 
-                <Image
+                <img
                   src={image.src}
                   alt={image.title}
-                  fill
-                  className="object-cover"
+                  className="w-full h-full object-cover"
                 />
 
               </div>
