@@ -31,7 +31,7 @@ export default function Socials() {
             <Mail />
           </a>
 
-          <Music2 />
+          
 
         </div>
 
