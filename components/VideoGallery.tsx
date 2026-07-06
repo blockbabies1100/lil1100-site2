@@ -43,7 +43,6 @@ export default function VideoGallery() {
       className="bg-zinc-950 py-24 px-6"
     >
       <div className="max-w-7xl mx-auto">
-
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -52,13 +51,10 @@ export default function VideoGallery() {
         >
           MUSIC VIDEOS
         </motion.h2>
-
         <p className="text-center text-gray-400 mb-16 max-w-3xl mx-auto">
           Official visuals from Lil 1100 — raw storytelling, real moments, and street-driven energy.
         </p>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-
           {videos.map((video, index) => (
             <motion.div
               key={index}
@@ -71,20 +67,15 @@ export default function VideoGallery() {
                   : "border-zinc-800"
               } bg-black`}
             >
-
               <div className="relative w-full aspect-video">
-
                 <iframe
                   className="w-full h-full"
                   src={`https://www.youtube.com/embed/${video.id}`}
                   title={video.title}
                   allowFullScreen
                 />
-
               </div>
-
               <div className="p-5">
-
                 <h3 className="text-2xl font-bold text-white flex items-center gap-2">
                   {video.title}
                   {video.featured && (
@@ -93,18 +84,13 @@ export default function VideoGallery() {
                     </span>
                   )}
                 </h3>
-
                 <p className="text-gray-400 mt-2 text-sm">
                   {video.caption}
                 </p>
-
               </div>
-
             </motion.div>
           ))}
-
         </div>
-
       </div>
     </section>
   );
