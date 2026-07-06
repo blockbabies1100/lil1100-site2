@@ -1,4 +1,4 @@
-import { Youtube, Instagram, Music2, Mail } from "lucide-react";
+import { Youtube, Instagram, Mail } from "lucide-react";
 
 export default function Socials() {
   return (
