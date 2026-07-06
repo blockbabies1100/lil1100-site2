@@ -1,3 +1,9 @@
-<a href="/merch">Merch</a>
-<a href="/tour">Tour</a>
-<a href="/contact">Booking</a>
+export default function Navbar() {
+  return (
+    <nav>
+      <a href="/merch">Merch</a>
+      <a href="/tour">Tour</a>
+      <a href="/contact">Booking</a>
+    </nav>
+  );
+}
