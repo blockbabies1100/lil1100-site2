@@ -4,11 +4,8 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   ...
-}import { motion } from "framer-motion";
-
-export default function Hero() {
-  return (
-    <section
+}
+     <section
       id="home"
       className="min-h-screen flex items-center justify-center bg-black pt-24"
     >
